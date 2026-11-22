@@ -34,7 +34,10 @@ function AddStudent() {
         aptitudeScore: Number(student.aptitudeScore),
       };
 
-      axios.post("https://placement-pro-backend-a0ne.onrender.com/students", formData)
+      const response = await axios.post(
+        "https://placement-pro-backend-a0ne.onrender.com/students",
+        studentData
+      );
 
       console.log("Saved student:", response.data);
 
@@ -76,78 +79,43 @@ function AddStudent() {
         <p>
           <label>Student Name:</label>
           <br />
-          <input
-            type="text"
-            name="name"
-            value={student.name}
-            onChange={handleChange}
-            placeholder="Enter student name"
-            required
-          />
+          <input type="text" name="name" value={student.name}
+            onChange={handleChange} placeholder="Enter student name" required />
         </p>
 
         <p>
           <label>Register Number:</label>
           <br />
-          <input
-            type="text"
-            name="registerNumber"
-            value={student.registerNumber}
-            onChange={handleChange}
-            placeholder="Enter register number"
-            required
-          />
+          <input type="text" name="registerNumber" value={student.registerNumber}
+            onChange={handleChange} placeholder="Enter register number" required />
         </p>
 
         <p>
           <label>Department:</label>
           <br />
-          <input
-            type="text"
-            name="department"
-            value={student.department}
-            onChange={handleChange}
-            placeholder="Enter department"
-            required
-          />
+          <input type="text" name="department" value={student.department}
+            onChange={handleChange} placeholder="Enter department" required />
         </p>
 
         <p>
           <label>Technical Skills:</label>
           <br />
-          <input
-            type="text"
-            name="technicalSkills"
-            value={student.technicalSkills}
-            onChange={handleChange}
-            placeholder="Python, Java, SQL"
-            required
-          />
+          <input type="text" name="technicalSkills" value={student.technicalSkills}
+            onChange={handleChange} placeholder="Python, Java, SQL" required />
         </p>
 
         <p>
           <label>Aptitude Score (0–100):</label>
           <br />
-          <input
-            type="number"
-            name="aptitudeScore"
-            min="0"
-            max="100"
-            value={student.aptitudeScore}
-            onChange={handleChange}
-            required
-          />
+          <input type="number" name="aptitudeScore" min="0" max="100"
+            value={student.aptitudeScore} onChange={handleChange} required />
         </p>
 
         <p>
           <label>Communication Skills:</label>
           <br />
-          <select
-            name="communicationSkills"
-            value={student.communicationSkills}
-            onChange={handleChange}
-            required
-          >
+          <select name="communicationSkills" value={student.communicationSkills}
+            onChange={handleChange} required>
             <option value="">Select Level</option>
             <option value="Beginner">Beginner</option>
             <option value="Intermediate">Intermediate</option>
@@ -158,11 +126,8 @@ function AddStudent() {
         <p>
           <label>Placement Readiness:</label>
           <br />
-          <select
-            name="readinessStatus"
-            value={student.readinessStatus}
-            onChange={handleChange}
-          >
+          <select name="readinessStatus" value={student.readinessStatus}
+            onChange={handleChange}>
             <option value="Ready">Ready</option>
             <option value="Not Ready">Not Ready</option>
           </select>
