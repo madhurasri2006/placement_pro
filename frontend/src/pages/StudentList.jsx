@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = "https://placement-pro-backend-a0ne.onrender.com/students";
+
 function StudentList() {
   const [students, setStudents] = useState([]);
   const [editId, setEditId] = useState(null);
@@ -23,9 +25,7 @@ function StudentList() {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get(
-       https://placement-pro-backend-a0ne.onrender.com
-      );
+      const response = await axios.get(API_URL);
       setStudents(response.data);
     } catch (error) {
       console.error("Error fetching students:", error);
@@ -67,7 +67,7 @@ function StudentList() {
       };
 
       await axios.put(
-        `http://localhost:5000/students/${editId}`,
+        `${API_URL}/${editId}`,
         studentData
       );
 
@@ -99,9 +99,7 @@ function StudentList() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(
-        `http://localhost:5000/students/${id}`
-      );
+      await axios.delete(`${API_URL}/${id}`);
 
       alert("Student deleted successfully!");
       fetchStudents();
@@ -128,74 +126,43 @@ function StudentList() {
           <p>
             <label>Student Name:</label>
             <br />
-            <input
-              type="text"
-              name="name"
-              value={student.name}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="name" value={student.name}
+              onChange={handleChange} required />
           </p>
 
           <p>
             <label>Register Number:</label>
             <br />
-            <input
-              type="text"
-              name="registerNumber"
-              value={student.registerNumber}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="registerNumber"
+              value={student.registerNumber} onChange={handleChange} required />
           </p>
 
           <p>
             <label>Department:</label>
             <br />
-            <input
-              type="text"
-              name="department"
-              value={student.department}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="department"
+              value={student.department} onChange={handleChange} required />
           </p>
 
           <p>
             <label>Technical Skills:</label>
             <br />
-            <input
-              type="text"
-              name="technicalSkills"
-              value={student.technicalSkills}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="technicalSkills"
+              value={student.technicalSkills} onChange={handleChange} required />
           </p>
 
           <p>
             <label>Aptitude Score:</label>
             <br />
-            <input
-              type="number"
-              name="aptitudeScore"
-              min="0"
-              max="100"
-              value={student.aptitudeScore}
-              onChange={handleChange}
-              required
-            />
+            <input type="number" name="aptitudeScore" min="0" max="100"
+              value={student.aptitudeScore} onChange={handleChange} required />
           </p>
 
           <p>
             <label>Communication Skills:</label>
             <br />
-            <select
-              name="communicationSkills"
-              value={student.communicationSkills}
-              onChange={handleChange}
-              required
-            >
+            <select name="communicationSkills"
+              value={student.communicationSkills} onChange={handleChange} required>
               <option value="">Select Level</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
@@ -206,11 +173,8 @@ function StudentList() {
           <p>
             <label>Placement Readiness:</label>
             <br />
-            <select
-              name="readinessStatus"
-              value={student.readinessStatus}
-              onChange={handleChange}
-            >
+            <select name="readinessStatus"
+              value={student.readinessStatus} onChange={handleChange}>
               <option value="Ready">Ready</option>
               <option value="Not Ready">Not Ready</option>
             </select>
@@ -253,12 +217,8 @@ function StudentList() {
                 <td>{item.communicationSkills}</td>
                 <td>{item.readinessStatus}</td>
                 <td>
-                  <button onClick={() => handleEdit(item)}>
-                    Edit
-                  </button>{" "}
-                  <button onClick={() => handleDelete(item._id)}>
-                    Delete
-                  </button>
+                  <button onClick={() => handleEdit(item)}>Edit</button>{" "}
+                  <button onClick={() => handleDelete(item._id)}>Delete</button>
                 </td>
               </tr>
             ))}
