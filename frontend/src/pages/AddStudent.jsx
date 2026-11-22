@@ -34,10 +34,7 @@ function AddStudent() {
         aptitudeScore: Number(student.aptitudeScore),
       };
 
-      const response = await axios.post(
-        "http://localhost:5000/students",
-        studentData
-      );
+      axios.post("https://placement-pro-backend-a0ne.onrender.com/students", formData)
 
       console.log("Saved student:", response.data);
 
