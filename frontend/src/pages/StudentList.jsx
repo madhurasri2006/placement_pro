@@ -24,7 +24,7 @@ function StudentList() {
   const fetchStudents = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/students"
+       https://placement-pro-backend-a0ne.onrender.com
       );
       setStudents(response.data);
     } catch (error) {
